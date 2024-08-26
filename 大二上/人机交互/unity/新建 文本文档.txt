@@ -1,0 +1,31 @@
+using System.Collections;
+using System.Collections.Concurrent;
+using UnityEngine;
+
+public class wasd : MonoBehaviour
+{
+    private Transform m_Transform;
+    // Start is called before the first frame update
+    void Start()
+    {
+        m_Transform.gameObject.GetComponent<Transform>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.Getkey(keyCode.W){
+            m_Transform.Translate(Vector3.forward * 0.1f, Space.World);
+        }
+        if (Input.Getkey(keyCode.A){
+            m_Transform.Translate(Vector3.left * 0.1f, Space.World);
+        }
+        if (Input.Getkey(keyCode.S){
+            m_Transform.Translate(Vector3.back * 0.1f, Space.World);
+        }
+        if (Input.Getkey(keyCode.D){
+            m_Transform.Translate(Vector3.right * 0.1f, Space.World);
+        }
+
+    }
+}
