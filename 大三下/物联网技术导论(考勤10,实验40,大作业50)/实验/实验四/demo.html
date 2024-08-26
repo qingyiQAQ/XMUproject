@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="Chart1"></canvas>
+    <canvas id="Chart2"></canvas>
+    <canvas id="Chart3"></canvas>
+    <canvas id="CombinedChart"></canvas>
+    <script>
+        fetch('http://localhost:8080/temperature')
+            .then(response => response.json())
+            .then(data => {
+                const dates = data.map(entry => entry.date);
+                const temperature = data.map(entry => entry.temperature);
+                const threshold = 25; // 你可以根据需要设置阈值
+
+                var ctx = document.getElementById('Chart1').getContext('2d');
+
+                // 添加报警信息的显示逻辑
+                const alertData = temperature.map(temp => temp > threshold ? temp : null);
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Temperature',
+                            data: temperature,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Alert',
+                            data: alertData,
+                            backgroundColor: 'rgba(255, 0, 0, 0.2)', // 红色背景表示报警
+                            borderColor: 'rgba(255, 0, 0, 1)', // 红色边框表示报警
+                            borderWidth: 3
+                        }]
+                    }
+                });
+            });
+
+        fetch('http://localhost:8080/pressure')
+            .then(response => response.json())
+            .then(data => {
+                const dates = data.map(entry => entry.date);
+                const pressure = data.map(entry => entry.pressure);
+
+                var ctx = document.getElementById('Chart2').getContext('2d');
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Pressure',
+                            data: pressure,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            });
+        fetch('http://localhost:8080/volume')
+            .then(response => response.json())
+            .then(data => {
+                const dates = data.map(entry => entry.date);
+                const volume = data.map(entry => entry.volume);
+
+                var ctx = document.getElementById('Chart3').getContext('2d');
+
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dates,
+                        datasets: [{
+                            label: 'Volume',
+                            data: volume,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+            });
+        // 归一化函数
+        function normalizeData(data) {
+            const max = Math.max(...data);
+            const min = Math.min(...data);
+            return data.map(value => (value - min) / (max - min));
+        }
+
+        // 在获取数据后，对数据进行归一化处理
+        fetch('http://localhost:8080/temperature')
+            .then(response => response.json())
+            .then(temperatureData => {
+                fetch('http://localhost:8080/pressure')
+                    .then(response => response.json())
+                    .then(pressureData => {
+                        fetch('http://localhost:8080/volume')
+                            .then(response => response.json())
+                            .then(volumeData => {
+                                // 获取日期
+                                const dates = temperatureData.map(entry => entry.date);
+                                // 获取温度、压力和体积数据
+                                const temperature = normalizeData(temperatureData.map(entry => entry.temperature));
+                                const pressure = normalizeData(pressureData.map(entry => entry.pressure));
+                                const volume = normalizeData(volumeData.map(entry => entry.volume));
+
+                                // 创建图表
+                                var ctx = document.getElementById('CombinedChart').getContext('2d');
+
+                                var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                        labels: dates,
+                                        datasets: [{
+                                            label: 'Temperature',
+                                            data: temperature,
+                                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                            borderColor: 'rgba(75, 192, 192, 1)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            label: 'Pressure',
+                                            data: pressure,
+                                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        },
+                                        {
+                                            label: 'Volume',
+                                            data: volume,
+                                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                            borderColor: 'rgba(255, 206, 86, 1)',
+                                            borderWidth: 1
+                                        }
+                                        ]
+                                    }
+                                });
+                            });
+                    });
+            });
+
+    </script>
+</body>
+
+</html>

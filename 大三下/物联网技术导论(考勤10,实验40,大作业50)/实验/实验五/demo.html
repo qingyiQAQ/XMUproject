@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts Gauge Demo</title>
+    <!-- 引入 ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.2.1/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 600px;height:400px;"></div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化ECharts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 发起 HTTP 请求获取数据
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://localhost:8080/temperature', true);
+        xhr.responseType = 'json';
+
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // 数据请求成功
+                var responseData = xhr.response;
+
+                // 更新 ECharts 数据
+                myChart.setOption({
+                    series: [{
+                        type: 'gauge',
+                        detail: {formatter: '{value}°C'},
+                        data: [{value: responseData[responseData.length - 1].temperature.toFixed(2), name: 'Temperature'}],
+                        // 仪表盘的指针
+                        pointer: { 
+                            length: '80%',
+                            width: 8
+                        },
+                        // 仪表盘的轴线
+                        axisLine: {
+                            lineStyle: {
+                                width: 20,
+                                color: [[0.2, '#ff4500'], [0.8, '#48b'], [1, '#228b22']]
+                            }
+                        },
+                        // 仪表盘的刻度
+                        axisTick: {
+                            splitNumber: 10,
+                            length: 12
+                        },
+                        // 仪表盘的刻度标签
+                        axisLabel: {
+                            fontSize: 12
+                        }
+                    }]
+                });
+            } else {
+                // 请求失败
+                console.error('Failed to load data: ' + xhr.status);
+            }
+        };
+
+        xhr.send();
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Data Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <canvas id="myChart1"></canvas>
+    <canvas id="myChart2"></canvas>
+    <canvas id="myChart3"></canvas>
+    <canvas id="myChart4"></canvas>
+
+    <script>
+        fetch('http://localhost:8080/sensorData')
+            .then(response => response.json())
+            .then(data => {
+                // Extract the dateTime and values from the data
+                const labels = data.map(entry => entry.dateTime);
+                const temperatureData = data.map(entry => entry.temperature);
+                const humidityData = data.map(entry => entry.humidity);
+                const lightData = data.map(entry => entry.light);
+                const airQualityData = data.map(entry => entry.airQuality);
+
+                // Create a line chart
+                const ctx1 = document.getElementById('myChart1').getContext('2d');
+                const ctx2 = document.getElementById('myChart2').getContext('2d');
+                const ctx3 = document.getElementById('myChart3').getContext('2d');
+                const ctx4 = document.getElementById('myChart4').getContext('2d');
+                new Chart(ctx1, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Temperature',
+                                data: temperatureData,
+                                borderColor: 'red',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Temperature (°C)'
+                                }
+                            }
+                        }
+                    },
+                });
+                new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Humidity',
+                                data: humidityData,
+                                borderColor: 'blue',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Humidity (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+                new Chart(ctx3, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Light',
+                                data: lightData,
+                                borderColor: 'green',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Light (lux)'
+                                }
+                            }
+                        }
+                    }
+                });
+                new Chart(ctx4, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Air Quality',
+                                data: airQualityData,
+                                borderColor: 'orange',
+                                fill: false
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Air Quality'
+                                }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+
+</html>
