@@ -1,0 +1,23 @@
+h1{
+	padding: 30px 50px 30px 525px;
+}
+.buttom{
+	height: 500px;
+}
+.dl{
+	float:left;
+	height:511px;
+	width:394px;
+	margin-left: 4px;
+	background: #fff;
+}
+.dd{
+	border: 1px dashed #f0f;
+	border-radius: 10px;
+	padding: 10px 90px;
+	margin: 5px;
+}
+img{
+	width: 250px;
+	padding: 50px 65px;
+}

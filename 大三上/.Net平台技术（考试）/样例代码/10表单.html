@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单</title>
+		<script src="./vue.global.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- <input v-model="txtInfo" placeholder="输入单行文本..." />
+			<p>输入的信息是：{{txtInfo}}</p>
+			<hr /> -->
+			
+			<!-- <p>textarea 元素：</p>
+			<p style="white-space: pre">{{ txtMultiline }}</p>
+			<pre>输入的多行信息是：<br>{{txtMultiline}}</pre>
+			<textarea v-model="txtMultiline" placeholder="输入多行文本..."></textarea>
+			<hr /> -->
+
+			<p>单个复选框</p>
+			<input type="checkbox" id="checkbox1" v-model="ifChecked" />
+			<label for="checkbox1">是否选择：{{ifChecked}}</label>
+
+			<p>多个复选框：</p>
+			<input type="checkbox" id="id1" value="华为" v-model="checkedNames">
+			<label for="id1">华为</label>
+			<input type="checkbox" id="id2" value="小米" v-model="checkedNames">
+			<label for="id2">小米</label>
+			<input type="checkbox" id="id3" value="Vivo" v-model="checkedNames">
+			<label for="id3">Vivo</label>
+			<br>
+			<span>选择的值为: {{ checkedNames }}</span>
+
+			<p>单选框</p>
+			<input type="radio" id="r1" value="华为手机" v-model="rchoice">
+			<label for="r1">华为手机</label>
+			<input type="radio" id="r2" value="苹果手机" v-model="rchoice">
+			<label for="r2">苹果手机</label>
+			<br>
+			<span>选择的值为: {{ rchoice }}</span>
+
+			<p>下拉列表</p>
+			<select v-model="selectedht" name="hightech">
+				<option value="">请选择高科技公司</option>
+				<option value="华为">华为</option>
+				<option value="中兴">中兴</option>
+				<option value="大疆">大疆</option>
+				<option value="科大讯飞">科大讯飞</option>
+			</select>
+			<br />
+			<span>选择的值为: {{ selectedht }}</span>
+			<hr />
+			<div><button @click="submit()">提交</button></div>
+			
+		</div>
+
+		<script>
+			var vm = Vue.createApp({
+
+				data() {
+					return {
+						txtInfo: "文本初始值",
+						txtMultiline: "",
+
+						ifChecked: false,
+						checkedNames: [],
+						rchoice: "华为手机",
+						selectedht: ""
+					}
+
+				},
+				methods: {
+					submit() {
+						/* 在日志中查看提交的数据 */
+						console.log(this.txtInfo);
+						console.log(this.checkedNames);
+
+						/* 可以创建一个对象，包含表单中的相关数据，在日志中查看提交的数据 */
+						var dataobj = {
+							tinfo: this.txtInfo,
+							tmultiline: this.txtMultiline,
+							ifcheck: this.ifChecked,
+							cnames: this.checkedNames,
+							rc: this.rchoice,
+							sht: this.selectedht
+						}
+						console.log(dataobj);
+					}
+				}
+			})
+			
+			vm.mount("#app")
+		</script>
+	</body>
+</html>

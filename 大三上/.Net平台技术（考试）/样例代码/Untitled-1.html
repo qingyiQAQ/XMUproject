@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>表单</title>
+        <script src="./vue.global.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input v-model="textinfo" placeholder="输入单行文本...">
+            <textarea v-model="textarea" placeholder="输入多行文本"></textarea>
+            <p style="white-space: pre">{{txt}}</p>
+            <pre>输入的多行信息是:<br>{{txt}}</pre>
+        </div>
+        <script>
+            const vm = Vue.createApp({
+                data(){
+                    return{
+                        textinfo: "文本初始值",
+                        msg:"你好，翔安"
+                    }
+                }
+            })
+            vm.mount("#app")
+        </script>
+    </body>
+</html>
