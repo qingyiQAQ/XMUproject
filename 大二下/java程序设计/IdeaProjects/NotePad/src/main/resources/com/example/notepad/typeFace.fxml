@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.notepad.TypeFaceController">
+   <children>
+      <MenuButton fx:id="typeFaceButton" layoutX="14.0" layoutY="59.0" mnemonicParsing="false" text="字体" />
+      <MenuButton fx:id="patternButton" layoutX="115.0" layoutY="59.0" mnemonicParsing="false" text="样式" />
+      <MenuButton fx:id="scaleButton" layoutX="220.0" layoutY="59.0" mnemonicParsing="false" text="大小" />
+      <TextArea fx:id="textArea" layoutY="98.0" prefHeight="152.0" prefWidth="300.0" />
+      <Button layoutX="116.0" layoutY="256.0" mnemonicParsing="false" onAction="#ensureButtonPressed" prefHeight="30.0" prefWidth="70.0" text="确定" />
+      <Text layoutX="31.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="字体">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="132.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="样式">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="237.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="大小">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

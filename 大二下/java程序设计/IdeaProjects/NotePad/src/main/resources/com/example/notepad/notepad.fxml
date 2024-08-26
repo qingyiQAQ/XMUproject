@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane prefHeight="681.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.notepad.NotepadController">
+                    <top>
+                        <MenuBar prefHeight="22.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
+                            <menus>
+                                <Menu mnemonicParsing="false" text="文件">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" onAction="#newTabPressed" text="新建标签页">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#newWindowPressed" text="新建窗口" />
+                                        <MenuItem mnemonicParsing="false" onAction="#openPressed" text="打开">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#savePressed" text="保存">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#saveAsPressed" text="另存为">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#saveAllPressed" text="全部保存">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="DOWN" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem mnemonicParsing="false" onAction="#closeTabPressed" text="关闭选项卡">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#closeWindowPressed" text="关闭窗口">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#exitPressed" text="退出" />
+                                    </items>
+                                </Menu>
+                                <Menu mnemonicParsing="false" onShowing="#onMenuShowing" text="编辑">
+                                    <items>
+                                        <MenuItem fx:id="revokeButton" mnemonicParsing="false" onAction="#revokePressed" text="撤销">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="shearButton" mnemonicParsing="false" onAction="#shearPressed" text="剪切">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="X" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="copyButton" mnemonicParsing="false" onAction="#copyPressed" text="复制">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="pasteButton" mnemonicParsing="false" onAction="#pastePressed" text="粘贴">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePressed" text="删除">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="DELETE" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem mnemonicParsing="false" onAction="#seekPressed" text="查找">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="F" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#seekNextPressed" text="查找下一个">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="F3" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#seekPrevPressed" text="查找上一个">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="F3" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#replacePressed" text="替换">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="H" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#gotoPressed" text="转到">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem mnemonicParsing="false" onAction="#selectAllPressed" text="全选">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <MenuItem mnemonicParsing="false" onAction="#timeDatePressed" text="时间/日期">
+                                            <accelerator>
+                                                <KeyCodeCombination alt="UP" code="F5" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                                            </accelerator>
+                                        </MenuItem>
+                                        <SeparatorMenuItem mnemonicParsing="false" />
+                                        <MenuItem mnemonicParsing="false" onAction="#typefacePressed" text="字体" />
+                                    </items>
+                                </Menu>
+                                <Menu mnemonicParsing="false" text="查看">
+                                    <items>
+                                        <Menu mnemonicParsing="false" text="缩放">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" onAction="#enlargePressed" text="放大">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="ADD" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                                                <MenuItem mnemonicParsing="false" onAction="#shrinkPressed" text="缩小">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="SUBTRACT" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                                                <MenuItem mnemonicParsing="false" onAction="#restorePressed" text="还原默认缩放">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="DIGIT0" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                                            </items>
+                                        </Menu>
+                                        <CheckMenuItem fx:id="statusBarButton" mnemonicParsing="false" onAction="#statusBarPressed" text="状态栏" />
+                                        <CheckMenuItem fx:id="autoWrapButton" mnemonicParsing="false" onAction="#autoWrapPressed" text="自动换行" />
+                                    </items>
+                                </Menu>
+                            </menus>
+                        </MenuBar>
+                    </top>
+                    <bottom>
+                        <GridPane fx:id="statusBar" prefHeight="25.0" prefWidth="1100.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1001.0" minWidth="10.0" prefWidth="359.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="650.0" minWidth="0.0" prefWidth="61.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="708.0" minWidth="10.0" prefWidth="136.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.0" minWidth="0.0" prefWidth="65.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="573.0" minWidth="10.0" prefWidth="274.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="321.0" minWidth="0.0" prefWidth="54.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="151.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                            </rowConstraints>
+                            <children>
+                                <Text fx:id="positionText" strokeType="OUTSIDE" strokeWidth="0.0" text="行1，列1" wrappingWidth="820.30029296875" />
+                                <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="0.0" GridPane.columnIndex="1" />
+                                <Text fx:id="scaleText" strokeType="OUTSIDE" strokeWidth="0.0" text="100%" wrappingWidth="118.0" GridPane.columnIndex="2" />
+                                <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="0.0" GridPane.columnIndex="3" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Windows(CRLF)" wrappingWidth="128.30029296875" GridPane.columnIndex="4" />
+                                <Separator orientation="VERTICAL" prefHeight="29.0" prefWidth="0.0" GridPane.columnIndex="5" />
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="UTF-8" GridPane.columnIndex="6" />
+                            </children>
+                        </GridPane>
+                    </bottom>
+   <center>
+                        <TextArea fx:id="textArea" onKeyTyped="#textAreaKeyTyped" onMouseClicked="#textAreaMouseClicked" prefHeight="615.0" prefWidth="1100.0" BorderPane.alignment="CENTER" />
+   </center>
+                </BorderPane>

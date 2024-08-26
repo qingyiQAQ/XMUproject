@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.exam2.HelloController">
+  <tabs>
+    <Tab text="会员健康状况录入">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Text layoutX="4.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="会员编号(NO***)：" />
+                  <Text layoutX="4.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="体重(kg)：" />
+                  <Text layoutX="4.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="肌肉(kg)：" />
+                  <Text layoutX="4.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="体脂百分比(%)：" />
+                  <TextField fx:id="TextInput1" layoutX="149.0" layoutY="25.0" />
+                  <TextField fx:id="TextInput2" layoutX="149.0" layoutY="77.0" />
+                  <TextField fx:id="TextInput3" layoutX="149.0" layoutY="128.0" />
+                  <TextField fx:id="TextInput4" layoutX="149.0" layoutY="175.0" />
+                  <Text layoutX="417.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="正常范围" />
+                  <Text layoutX="417.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="65.5-80.1" />
+                  <Text layoutX="417.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="52.5-63.6" />
+                  <Text layoutX="417.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-underline: true;" text="10-20" />
+                  <Button fx:id="save" layoutX="149.0" layoutY="231.0" mnemonicParsing="false" onAction="#OnSaveButtonPressed" prefHeight="30.0" prefWidth="195.0" text="保存到文件中" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab text="会员健康状况分析">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Text layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="会员编号：" />
+                  <TextArea fx:id="TextArea" layoutY="42.0" prefHeight="274.0" prefWidth="600.0" />
+                  <TextField fx:id="User_no" layoutX="92.0" layoutY="9.0" />
+                  <Button layoutX="396.0" layoutY="9.0" mnemonicParsing="false" onAction="#Analysis" text="健康状况分析" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

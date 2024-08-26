@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.notepad.SaveController">
+   <children>
+      <Button layoutX="40.0" layoutY="130.0" mnemonicParsing="false" onAction="#saveSavePressed" text="保存" />
+      <Button layoutX="118.0" layoutY="130.0" mnemonicParsing="false" onAction="#saveNotSavePressed" text="不保存" />
+      <Button layoutX="210.0" layoutY="130.0" mnemonicParsing="false" onAction="#saveCancelPressed" text="取消" />
+      <Text layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="记事本" wrappingWidth="106.30029296875">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Text>
+      <Text fx:id="saveText" layoutX="1.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
